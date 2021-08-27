@@ -1,0 +1,63 @@
+.section-card{
+  animation: section-card .3s ease-in-out;
+}
+#card{
+    text-align: center;
+    transition: transform .1s ease-in-out;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    margin-bottom: 25px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 4px 1px 18px 0px rgba(0,0,0,0.36);
+  }
+  
+  
+.card-image{
+    max-width: 100%;
+    
+  
+}
+  
+.card-content .card-text{
+    line-height: 1.5;
+    font-size: .95em;
+}
+  
+.card-content .card-title{
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: rgb(0, 0, 0);
+}
+  
+.card-content{
+    padding: 1.5em;
+  }
+
+@keyframes section-card{
+    0%{
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+  
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (min-width: 468px) {
+    #card:hover{
+      transform: scaleY(1.05);
+    }
+
+    .section-card{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+      grid-row: auto;
+      gap: 30px;
+      
+    }
+
+  }

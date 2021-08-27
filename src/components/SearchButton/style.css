@@ -1,0 +1,28 @@
+.input{
+    padding: 1em;
+    width: 80%;
+    display: block;
+    margin: 0 auto 20px auto;
+    outline: none;
+    box-shadow: 0 0 0 1pt transparent;
+    border: 0;
+    border-radius: 15px;
+    transition: box-shadow .2s ease-in;
+    animation: search .5s ease-in-out;
+}
+
+.input:focus{
+    box-shadow: 0 0 0 1pt #7700ff;
+}
+
+@keyframes search{
+    0%{
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

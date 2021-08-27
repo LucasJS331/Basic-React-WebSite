@@ -1,0 +1,33 @@
+
+.btn{
+    color: white;
+    background-color: #750ab3;
+    padding: 1em;
+    border-radius: 6px;
+    border: 0;
+    width: 100%;
+    display: inline-block;
+    font-size: 1em;
+    margin-bottom: 15px;
+    transition: background-color .5s ease-in-out;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: #500a79;
+}
+
+.btn:disabled{
+    background-color: rgb(218, 153, 248);
+    cursor: not-allowed;
+}
+
+@media screen and (min-width: 490px) {
+    
+    .btn{
+        width: auto;
+        display: inline-block;
+        margin: 15px;
+
+    }
+}

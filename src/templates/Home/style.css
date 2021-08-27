@@ -1,0 +1,68 @@
+.card-section{
+  max-height: 100vh;
+  padding: 1.1em 1.1em .50em 1.1em ;
+  text-align: center;
+
+}
+
+.button{
+  text-align: center;
+
+}
+
+.input{
+  margin-bottom: 10px;
+}
+
+.card-section-search{
+  margin-bottom: 10px;
+  animation: search-title .3s ease-in-out;
+}
+
+.section-not-found{
+  margin-top: 150px;
+  font-size: 2.6em;
+  color: rgba(43, 37, 37, 0.425);
+  animation: not-found .3s ease-in-out;
+  letter-spacing: 1.5px;
+}
+
+.posts-content{
+  animation: posts .3s ease-in-out;
+}
+@keyframes posts{
+  0%{
+      transform: translateX(-30px);
+      opacity: 0;
+  }
+
+  100%{
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+@keyframes search-title{
+  0%{
+      transform: translateX(-30px);
+      opacity: 0;
+  }
+
+  100%{
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+@keyframes not-found{
+  0%{
+      transform: translateX(-30px);
+      opacity: 0;
+  }
+
+  100%{
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
