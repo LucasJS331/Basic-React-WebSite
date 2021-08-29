@@ -4,7 +4,7 @@ export const PostCard = ({posts})=>{
     return (
         <div className="section-card">
         {posts.map(post =>(
-
+            
             <article id="card" key={post.title}>
                 <img src={post.cover} alt={post.title} className="card-image"></img>
             

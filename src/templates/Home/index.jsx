@@ -1,10 +1,86 @@
 import './style.css';
-import { Component } from 'react';
+import {useCallback, useEffect, useState } from 'react';
 import { PostCard } from '../../components/PostCard';
 import {loadPost} from '../../utils/load-posts';
 import { Button } from '../../components/Button/index';
 import { SearchBtn } from '../../components/SearchButton';
 
+export const Home=()=>{
+  let [posts, setposts] = useState([]);
+  let [allPost, setAllPosts] = useState([]);
+  let [page, setpage] = useState(0);
+  let [postPerPage] = useState(8);
+  let [searchValue, setSearchValue] = useState("");
+  let [filteredPost] = useState([]);
+
+  let noMorePost = page + postPerPage >= allPost.length; 
+
+  if(searchValue){
+    filteredPost = allPost.filter(post =>{
+      return post.title.toLowerCase().includes(searchValue.toLowerCase());
+    })
+  }
+  else{
+    filteredPost = posts;
+  }
+
+
+
+  const handleChange = (e)=>{
+    setSearchValue(e.target.value);
+  }
+
+  const loadMorePost = ()=>{
+    const nextPage = page + postPerPage;
+    const nextPost = allPost.slice(nextPage, nextPage + postPerPage);
+    posts.push(...nextPost);
+    //this.setState({posts, page: nextPage});
+    setposts(posts);
+    setpage(nextPage);
+    
+  }
+
+  const handlePost = useCallback (async (page, postPerPage) =>{
+    const all = await loadPost()
+    setAllPosts(all);
+    setposts(all.slice(page, postPerPage));
+  }, [])
+
+  useEffect(()=>{
+    handlePost(0,postPerPage);
+  },[handlePost, postPerPage])
+ return (
+  <section className="card-section">
+
+    <SearchBtn placeholder="Busque aqui!" onChange={handleChange} value={searchValue}/>         
+    {!!searchValue && (
+      <h2 className="card-section-search">Busca: {searchValue}</h2>
+    
+    )}
+
+    {filteredPost.length === 0 && (
+      <h2 className="section-not-found">Nada encontrado! {"=("}</h2>
+    )}
+
+    {filteredPost.length > 0 && (
+      <PostCard posts={filteredPost}/>
+    )}
+        
+  {!searchValue && (
+      <div className="button">
+        <Button 
+        text="Ver mais" 
+        onClick={loadMorePost}
+        disabled={noMorePost}
+        />
+      </div>
+  )}
+
+</section>
+ )
+}
+
+/*
 export class Home extends Component{
   state = {
     posts: [],
@@ -88,3 +164,4 @@ export class Home extends Component{
     
   }
 }
+*/
