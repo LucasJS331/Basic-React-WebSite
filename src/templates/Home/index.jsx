@@ -1,9 +1,10 @@
 import './style.css';
+import React from 'react';
 import {useCallback, useEffect, useState } from 'react';
 import { PostCard } from '../../components/PostCard';
 import {loadPost} from '../../utils/load-posts';
 import { Button } from '../../components/Button/index';
-import { SearchBtn } from '../../components/SearchButton';
+import { Search } from '../../components/Search';
 
 export const Home=()=>{
   let [posts, setposts] = useState([]);
@@ -13,7 +14,7 @@ export const Home=()=>{
   let [searchValue, setSearchValue] = useState("");
   let [filteredPost] = useState([]);
 
-  let noMorePost = page + postPerPage >= allPost.length; 
+  let noMorePost = page + postPerPage >= allPost.length;
 
   if(searchValue){
     filteredPost = allPost.filter(post =>{
@@ -37,7 +38,7 @@ export const Home=()=>{
     //this.setState({posts, page: nextPage});
     setposts(posts);
     setpage(nextPage);
-    
+
   }
 
   const handlePost = useCallback (async (page, postPerPage) =>{
@@ -52,10 +53,10 @@ export const Home=()=>{
  return (
   <section className="card-section">
 
-    <SearchBtn placeholder="Busque aqui!" onChange={handleChange} value={searchValue}/>         
+    <Search placeholder="Busque aqui!" onChange={handleChange} value={searchValue}/>
     {!!searchValue && (
       <h2 className="card-section-search">Busca: {searchValue}</h2>
-    
+
     )}
 
     {filteredPost.length === 0 && (
@@ -65,11 +66,11 @@ export const Home=()=>{
     {filteredPost.length > 0 && (
       <PostCard posts={filteredPost}/>
     )}
-        
+
   {!searchValue && (
       <div className="button">
-        <Button 
-        text="Ver mais" 
+        <Button
+        text="Ver mais"
         onClick={loadMorePost}
         disabled={noMorePost}
         />
@@ -119,7 +120,7 @@ export class Home extends Component{
 
   render(){
     let {posts, page, postPerPage, allPost, searchValue, filteredPost} = this.state;
-    let noMorePost = page + postPerPage >= allPost.length; 
+    let noMorePost = page + postPerPage >= allPost.length;
 
     if(searchValue){
       filteredPost = allPost.filter(post =>{
@@ -131,10 +132,10 @@ export class Home extends Component{
     }
     return (
     <section className="card-section">
-        <SearchBtn placeholder="Busque aqui!" onChange={this.handleChange} value={searchValue}/>         
+        <SearchBtn placeholder="Busque aqui!" onChange={this.handleChange} value={searchValue}/>
         {!!searchValue && (
           <h2 className="card-section-search">Busca: {searchValue}</h2>
-        
+
         )}
 
         {filteredPost.length === 0 && (
@@ -148,20 +149,20 @@ export class Home extends Component{
         {filteredPost.length > 0 && (
           <PostCard posts={filteredPost}/>
         )}
-             
+
       {!searchValue && (
           <div className="button">
-            <Button 
-            text="Ver mais" 
+            <Button
+            text="Ver mais"
             onClick={this.loadMorePost}
             disabled={noMorePost}
             />
           </div>
       )}
-     
+
     </section>
     );
-    
+
   }
 }
 */
